@@ -2105,19 +2105,11 @@ static av_cold int xmaframes_decode_end(AVCodecContext* avctx)
     return 0;
 }
 
-/**
- *@brief Decode a single WMA frame. Packet parsing is out of this decoders scope.
- *@param avctx codec context
- *@param data the output buffer
- *@param avpkt input packet. the data is preceeded by one byte that contains bit padding information
- *@return number of bytes that were read from the input buffer
- */
-static int xmaframes_decode_packet(AVCodecContext *avctx, void *data,
+static int xmaframes_decode_packet(AVCodecContext *avctx, AVFrame *frame,
                                    int *got_frame_ptr, AVPacket *avpkt)
 {
     WMAProDecodeCtx *s = avctx->priv_data;
     GetBitContext* gb = &s->gb;
-    AVFrame *frame = data;
     int ret, xma_frame_len = 0;
     uint8_t padding_start, padding_end = 0;
 
