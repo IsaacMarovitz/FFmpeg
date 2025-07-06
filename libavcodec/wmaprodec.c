@@ -2150,7 +2150,7 @@ static int xmaframes_decode_packet(AVCodecContext *avctx, AVFrame *frame,
         return 0;
     }
 
-    decode_frame(s, data, got_frame_ptr);
+    decode_frame(s, frame, got_frame_ptr);
 
     return avpkt->size;
 }
